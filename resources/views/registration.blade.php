@@ -23,7 +23,7 @@
                             <div class="error-message text-danger">{{ $message }}</div>
                     @enderror
                     <fieldset>
-                      <input name="name" type="text" id="name" placeholder="YOUR NAME...*" required="">
+                      <input name="name" type="text" id="name" placeholder="YOUR NAME...*" required="" autocomplete="off">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
@@ -31,7 +31,7 @@
                             <div class="error-message text-danger">{{ $message }}</div>
                     @enderror
                     <fieldset>
-                      <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
+                      <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="" autocomplete="off">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">
@@ -39,7 +39,7 @@
                             <div class="error-message text-danger">{{ $message }}</div>
                     @enderror
                     <fieldset>
-                      <input name="mobile_number" type="text" id="mobile_number" placeholder="YOUR MOBILE...*" required="">
+                      <input name="mobile_number" type="text" id="mobile_number" placeholder="YOUR MOBILE...*" required="" autocomplete="off">
                     </fieldset>
                   </div>
                   <div class="col-lg-12">

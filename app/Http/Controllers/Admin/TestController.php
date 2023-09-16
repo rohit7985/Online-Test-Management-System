@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Test;
 use Exception;
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Facades\Storage;
 use App\Models\Question;
 
 
@@ -26,7 +24,12 @@ class TestController extends Controller
                 'images' => $imageName,
             ];
             $test = Test::create($data);
-            return redirect()->back()->with('sucess', 'Test added');
+            if($test){
+                return redirect()->back()->with('sucess', 'Test added');
+            }else{
+                return redirect()->back()->with('error', 'Something went Wrong');
+
+            }
         } catch (Exception $e) {
             dd($e);
         }
@@ -36,7 +39,6 @@ class TestController extends Controller
     {
         try {
             $tests = Test::all();
-
             return view('admin.test', compact('tests'));
         } catch (Exception $e) {
             // Handle the exception, you can uncomment the `dd($e);` line for debugging
@@ -47,7 +49,6 @@ class TestController extends Controller
         try {
             return view('student.testInfo');
         } catch (Exception $e) {
-            // Handle the exception, you can uncomment the `dd($e);` line for debugging
         }
     }
 
@@ -73,7 +74,6 @@ class TestController extends Controller
             $test = Test::findOrFail($id);
             return view('admin.addQna', compact('questions', 'test'));
         } catch (Exception $e) {
-            // Handle the exception, you can uncomment the `dd($e);` line for debugging
         }
     }
     public function addQnaToTest(Request $request)
@@ -82,14 +82,12 @@ class TestController extends Controller
             $ids = $request->input('ids');
             $testId = $request->input('testId');
             $test = Test::findOrFail($testId);
-
             $qidsAsString = implode(',', $ids);
             $test->update([
                 'qids' => $qidsAsString,
             ]);
             return response()->json($test);
         } catch (Exception $e) {
-            // Handle the exception, you can uncomment the `dd($e);` line for debugging
         }
     }
 
@@ -109,7 +107,6 @@ class TestController extends Controller
     {
         try {
             $test = Test::findOrFail($id);
-
             $test->update([
                 'name' => $request->name,
                 'start_at' => $request->start_at,
@@ -129,7 +126,6 @@ class TestController extends Controller
             // Find the test by ID and delete it
             $test = Test::findOrFail($id);
             $test->delete();
-
             return response()->json(['success' => true]);
         } catch (Exception $e) {
             dd($e);

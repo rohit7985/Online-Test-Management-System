@@ -11,26 +11,15 @@
     </div>
   </section>
 
-  <section class="meetings-page" id="meetings">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="filters">
-                <ul>
-                  <li data-filter="*"  class="active">All Tests</li>
-                  <li data-filter=".soon">Soon</li>
-                  <li data-filter=".imp">Important</li>
-                  <li data-filter=".att">Attractive</li>
-                </ul>
-              </div>
-            </div>
-          
-            
-          </div>
-        </div>
+      <div class="jumbotron">
+        <p class="lead text-center">Read all the Instructions carefully before attempting the Test.</p>
+        <hr class="my-4">
+        <h6>Login and Authentication:</h6>
+  
+          <p> "Please log in using your registered credentials before starting the test."</p> 
+          <p>"Ensure you are using the correct login details provided to you."</p>              
+        <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Start</a>
+        </p>
       </div>
-    </div>
-  </section>
 @endsection

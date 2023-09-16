@@ -21,7 +21,6 @@ class adminController extends Controller
                 $tests = Test::all()->count();
                 $questions = Question::all()->count();
             }
-            // dd($user);
             return view('admin.dashboard',compact('user','students','tests','questions'));
         }catch(Exception $e){
             dd($e);

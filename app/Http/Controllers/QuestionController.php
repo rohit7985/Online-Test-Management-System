@@ -29,7 +29,7 @@ class QuestionController extends Controller
     public function index()
     {
         try {
-            $questions = Question::paginate(4);
+            $questions = Question::paginate(10);
             return view('admin.question', compact('questions'));
         } catch (Exception $e) {
             // dd($e);

@@ -30,7 +30,7 @@
                             <div class="error-message text-danger">{{ $message }}</div>
                           @enderror
                         <fieldset>
-                          <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." >
+                          <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..."  autocomplete="off">
                         </fieldset>
                        
                         @error('password')

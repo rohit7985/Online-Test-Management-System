@@ -75,6 +75,8 @@ Route::middleware('loginAuth')->group(function () {
         Route::get('/question/{id}/edit', ['as' => 'question.edit', 'uses' => 'QuestionController@editQuestion']);
         Route::post('/update-question/{id}', ['as' => 'question.update', 'uses' => 'QuestionController@updateQuestion']);
 
+        // Question Excel
+        Route::post('/upload-exel', ['as' => 'import.excel', 'uses' => 'ExcelController@import']);
         // Student
         Route::get('/students',['as' => 'admin.students', 'uses' => 'adminController@student']);
         Route::delete('/delete-student/{id}', ['as' => 'student.delete', 'uses' => 'adminController@deleteStudent']);

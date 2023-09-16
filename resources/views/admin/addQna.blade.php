@@ -21,6 +21,36 @@
 
         <!-- Rest of your view file content -->
         <a href="" class="btn btn-success" id="addQna">Add Selected</a>
+        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">Upload Excel File</a>
+        <div class="modal fade" id="uploadPdfModal" tabindex="-1" aria-labelledby="uploadPdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadPdfModalLabel">Upload MCQ Excel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(session('success1'))
+                            <div class="alert alert-success">{{ session('success1') }}</div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">{{ session('error') }}</div>
+                        @endif
+                        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="pdf">Choose Excel File</label>
+                                <input type="file" name="excel_file" accept=".xlsx, .xls">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <table class="table">
             <thead class="thead-dark">
 

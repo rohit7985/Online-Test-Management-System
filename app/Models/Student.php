@@ -13,4 +13,9 @@ class Student extends Authenticatable
         'password',
         'user_type',
     ];
+
+    public static function getUserDataByEmail($email){
+        $user = Student::where('email', $email)->first();
+        return $user;
+    }
 }

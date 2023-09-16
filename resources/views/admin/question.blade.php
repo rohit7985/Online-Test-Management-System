@@ -6,21 +6,49 @@
     <div id="content" class="p-4 p-md-5 pt-5">
         <h2 class="mb-4 text-center">Question</h2>
         <!-- Button trigger modal -->
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQuestionModel">
             Add Question
         </button>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
+        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">Upload Excel File</a>
+        <div class="modal fade" id="uploadPdfModal" tabindex="-1" aria-labelledby="uploadPdfModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadPdfModalLabel">Upload MCQ Excel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @if(session('success1'))
+                            <div class="alert alert-success">{{ session('success1') }}</div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">{{ session('error') }}</div>
+                        @endif
+                        <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="pdf">Choose Excel File</label>
+                                <input type="file" name="excel_file" accept=".xlsx, .xls">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
-        @endif
-
+        </div>
         <!-- Rest of your view file content -->
 
         <table class="table">
@@ -52,14 +80,15 @@
             </thead>
             <tbody>
                 @if (!empty($questions))
-                    <?php $i = 1; ?>
+                @php $serialNumber = ($questions->currentPage() - 1) * $questions->perPage() + 1; @endphp
+                
                     @foreach ($questions as $question)
                         <tr>
-                            <th>
+                            <td>
                                 <input type="checkbox" class="checkboxId" name="qid" value="{{ $question['id'] }}"
                                     aria-label="Checkbox for following text input">
-                            </th>
-                            <th scope="row">{{ $i }}</th>
+                            </td>
+                            <td>{{ $serialNumber }}</td>
                             <td>{{ $question['question'] }}</td>
                             <td>{{ $question['option1'] }}</td>
                             <td>{{ $question['option2'] }}</td>
@@ -74,7 +103,7 @@
                                 </a>
                             </td>
                             
-                            <?php $i++; ?>
+                            @php $serialNumber++; @endphp
                         </tr>
                     @endforeach
                 @endif

@@ -17,7 +17,8 @@ class studentController extends Controller
     public function index(){ 
         try{
             if(Session::has('email')){
-                $user = Student::where('email', Session::get('email'))->first();
+                $email = Session::get('email');
+                $user = Student::getUserDataByEmail($email);
             }
             $tests = Test::all();
             return view('student.dashboard',compact('user','tests'));
