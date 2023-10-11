@@ -11,7 +11,7 @@
                 @csrf
                 <div class="row">
                   <div class="col-lg-12">
-                    <h2>Registration</h2>
+                    <h2>{{trans('home.registration')}}</h2>
                   </div>
                   @if(session('success'))
                       <div class="alert alert-success">
@@ -60,7 +60,7 @@
                   </div>
                   <div class="col-lg-12">
                     <fieldset>
-                      <button type="submit" id="form-submit" class="button">Register</button>
+                      <button type="submit" id="form-submit" class="button">{{trans('home.register')}}</button>
                     </fieldset>
                   </div>
                 </div>

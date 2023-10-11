@@ -4,7 +4,7 @@
 
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4 text-center">Question</h2>
+        <h2 class="mb-4 text-center">{{trans('admin.question')}}</h2>
         <!-- Button trigger modal -->
         @if (session('success'))
         <div class="alert alert-success">
@@ -18,14 +18,15 @@
         </div>
     @endif
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQuestionModel">
-            Add Question
+            {{trans('admin.add.questions')}}
         </button>
-        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">Upload Excel File</a>
+        <button type="button" class="btn btn-primary" id="addQnatoTest" data-toggle="modal" data-target="#addQuestionModel">{{trans('admin.add.in.test')}}</button>
+        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">{{trans('admin.upload.excel.file')}}</a>
         <div class="modal fade" id="uploadPdfModal" tabindex="-1" aria-labelledby="uploadPdfModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="uploadPdfModalLabel">Upload MCQ Excel</h5>
+                        <h5 class="modal-title" id="uploadPdfModalLabel">{{trans('admin.upload.mcq.excel')}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -40,10 +41,10 @@
                         <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="pdf">Choose Excel File</label>
+                                <label for="pdf">{{trans('admin.choose.excel.file')}}</label>
                                 <input type="file" name="excel_file" accept=".xlsx, .xls">
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
+                            <button type="submit" class="btn btn-primary">{{trans('admin.upload')}}</button>
                         </form>
                     </div>
                 </div>
@@ -55,24 +56,22 @@
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">
-                        Select All
-                        <input type="checkbox" name="" id="selectAllId"
-                            aria-label="Checkbox for following text input">
+                        <input type="checkbox" name="" id="selectAllId" aria-label="Checkbox for following text input">{{trans('admin.')}}Select All
                     </th>
-                    <th scope="col">S.No.</th>
-                    <th scope="col">Question</th>
-                    <th scope="col">Option-A</th>
-                    <th scope="col">Option-B</th>
-                    <th scope="col">Option-C</th>
-                    <th scope="col">Option-D</th>
-                    <th scope="col">Correct Answer</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">{{trans('admin.s.n')}}</th>
+                    <th scope="col">{{trans('admin.question')}}</th>
+                    <th scope="col">{{trans('admin.option.a')}}</th>
+                    <th scope="col">{{trans('admin.option.b')}}</th>
+                    <th scope="col">{{trans('admin.option.c')}}</th>
+                    <th scope="col">{{trans('admin.option.d')}}</th>
+                    <th scope="col">{{trans('admin.correct.answer')}}</th>
                     <th></th>
                     <th>
                         <div class="btn-group">
-                          <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true" style="color: aqua" data-toggle="dropdown"></i>
+                          <i class="fa fa-ellipsis-v fa-2x" aria-hidden="true" style="color: #04f18a;" data-toggle="dropdown"></i>
+                          {{-- <i class="fa-solid fa-ellipsis-vertical fa-beat-fade" style="color: #04f18a;" data-toggle="dropdown"></i> --}}
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" id="addQna"><span class="fa fa-trash mr-3"></span>Delete</a>
+                                <a href="#" id="addQna"><span class="fa fa-trash mr-3"></span>{{trans('admin.delete')}}</a>
                             </div>
                         </div>                  
                     </th>
@@ -95,11 +94,9 @@
                             <td>{{ $question['option3'] }}</td>
                             <td>{{ $question['option4'] }}</td>
                             <td>{{ $question['correct_option'] }}</td>
-                            <td>{{ $question['time'] }}</td>
-
                             <td>
                                 <a href="#" class="edit-question" data-id="{{ $question['id'] }}">
-                                    <span class="fa fa-edit mr-3"></span>Edit
+                                    <span class="fa fa-edit mr-3"></span>{{trans('admin.edit')}}
                                 </a>
                             </td>
                             
@@ -107,10 +104,12 @@
                         </tr>
                     @endforeach
                 @endif
-                {{ $questions->links() }}
             </tbody>
         </table>
+            <h4 style="padding-left: 7in"> {{ $questions->links() }}</h4>
+            
 
+        
         <!--Add Test Modal -->
         <div class="modal fade" id="addQuestionModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -119,46 +118,42 @@
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.add.question')}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div>
-                                <label>Question:</label>
+                                <label>{{trans('admin.question')}}:</label>
                                 <textarea id="w3review" name="question" rows="4" cols="35"></textarea>
                             </div>
                             <div>
-                                <label>Option-1</label>
-                                <input type="text" name="option1" id="option1" placeholder="option-1">
+                                <label>{{trans('admin.option.1')}}</label>
+                                <input type="text" name="option1" id="option1" placeholder="option-1" autocomplete="off">
                             </div>
                             <div>
-                                <label>Option-2</label>
-                                <input type="text" name="option2" id="option2" placeholder="option-2">
+                                <label>{{trans('admin.option.2')}}</label>
+                                <input type="text" name="option2" id="option2" placeholder="option-2" autocomplete="off">
                             </div>
                             <div>
-                                <label>Option-3</label>
-                                <input type="text" name="option3" id="option3" placeholder="option-3">
+                                <label>{{trans('admin.option.3')}}</label>
+                                <input type="text" name="option3" id="option3" placeholder="option-3" autocomplete="off">
                             </div>
                             <div>
-                                <label>Option-4</label>
-                                <input type="text" name="option4" id="option4" placeholder="option-4">
+                                <label>{{trans('admin.option.4')}}</label>
+                                <input type="text" name="option4" id="option4" placeholder="option-4" autocomplete="off">
                             </div>
                             <div>
-                                <label>Correct_option</label>
+                                <label>{{trans('admin.correct.option')}}</label>
                                 <input type="text" name="correct_option" id="correct_option"
-                                    placeholder="Correct_option">
-                            </div>
-                            <div>
-                                <label>Time</label>
-                                <input type="text" name="time" id="time" placeholder="Time">
+                                    placeholder="Correct_option" autocomplete="off">
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="submitButton" type="submit" class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.add')}}</button>
                             <!-- Change the button label to "Add" -->
                         </div>
                     </div>
@@ -174,46 +169,42 @@
                     @csrf
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Add Question</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.add.question')}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div>
-                                <label>Question:</label>
+                                <label>{{trans('admin.question')}}:</label>
                                 <textarea id="question" name="question" rows="4" cols="35"></textarea>
                             </div>
                             <div>
-                                <label>Option-1</label>
+                                <label>{{trans('admin.option.1')}}</label>
                                 <input type="text" name="option1" id="option1" placeholder="option-1">
                             </div>
                             <div>
-                                <label>Option-2</label>
+                                <label>{{trans('admin.option.2')}}</label>
                                 <input type="text" name="option2" id="option2" placeholder="option-2">
                             </div>
                             <div>
-                                <label>Option-3</label>
+                                <label>{{trans('admin.option.3')}}</label>
                                 <input type="text" name="option3" id="option3" placeholder="option-3">
                             </div>
                             <div>
-                                <label>Option-4</label>
+                                <label>{{trans('admin.option.4')}}</label>
                                 <input type="text" name="option4" id="option4" placeholder="option-4">
                             </div>
                             <div>
-                                <label>Correct_option</label>
+                                <label>{{trans('admin.correct.option')}}</label>
                                 <input type="text" name="correct_option" id="correct_option"
                                     placeholder="Correct_option">
-                            </div>
-                            <div>
-                                <label>Time</label>
-                                <input type="text" name="time" id="time" placeholder="Time">
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="submitButton" type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}</button>
+                            <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.update')}}</button>
                             <!-- Change the button label to "Add" -->
                         </div>
                     </div>
@@ -250,6 +241,29 @@
                     });
                 });
 
+                $('#addQnatoTest').click(function(e) {
+                    e.preventDefault();
+                    var all_ids = [];
+                    $('input:checkbox[name=qid]:checked').each(function() {
+                        all_ids.push($(this).val());
+                    });
+
+                    $.ajax({
+                        url: "/admin/add-question/" + all_ids,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'POST',
+                        data: all_ids,
+                        success: function(response) {
+                            window.location.href = "{{ route('test') }}";
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                });
+
             });
 
             $(document).ready(function() {
@@ -262,7 +276,6 @@
                     data['option3'] = $('[name="option3"]').val();
                     data['option4'] = $('[name="option4"]').val();
                     data['correct_option'] = $('[name="correct_option"]').val();
-                    data['time'] = $('[name="time"]').val();
 
                     var url = "{{ route('question.store') }}";
                     $.ajax({
@@ -323,7 +336,6 @@
                             $('#updateQuestionModel').find('#option4').val(data.option4);
                             $('#updateQuestionModel').find('#correct_option').val(data
                                 .correct_option);
-                            $('#updateQuestionModel').find('#time').val(data.time);
 
                             $('#updateQuestionModel').modal('show');
 
@@ -343,8 +355,6 @@
                                     '#option4').val();
                                 var updatedCorrectOption = $('#updateQuestionModel').find(
                                     '#correct_option').val();
-                                var updatedTime = $('#updateQuestionModel').find('#time')
-                                    .val();
 
                                 var updateUrl = "/admin/update-question/" + id;
                                 var data = {};
@@ -354,7 +364,6 @@
                                 data['option3'] = updatedOption3;
                                 data['option4'] = updatedOption4;
                                 data['correct_option'] = updatedCorrectOption;
-                                data['time'] = updatedTime;
                                 $.ajax({
                                     url: updateUrl,
                                     headers: {

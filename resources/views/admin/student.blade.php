@@ -4,10 +4,10 @@
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4 text-center">Student</h2>
+        <h2 class="mb-4 text-center">{{trans('admin.student')}}</h2>
              <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStudentModel">
-          Add Student 
+          {{trans('admin.add.student')}}  
         </button>
         @if(session('success'))
     <div class="alert alert-success">
@@ -27,11 +27,11 @@
           <thead class="thead-dark">
             
             <tr>
-              <th scope="col">S.No.</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">mobile number</th>
-              <th scope="col">User Type</th>
+              <th scope="col">{{trans('admin.s.n')}}</th>
+              <th scope="col">{{trans('admin.name')}}</th>
+              <th scope="col">{{trans('admin.email')}}</th>
+              <th scope="col">{{trans('admin.mobile.number')}}</th>
+              <th scope="col">{{trans('admin.user.type')}}</th>
               <th scope="col"></th>
               <th scope="col"></th>
             </tr>
@@ -47,12 +47,12 @@
               <td>{{$student['user_type']}}</td>
               <td>
                 <a href="#" class="edit-student" data-id="{{$student['id']}}">
-                    <span class="fa fa-edit mr-3"></span>Edit
+                    <span class="fa fa-edit mr-3"></span>{{trans('admin.edit')}}
                 </a>
               </td>              
               <td>
                 <a href="#" class="delete-student" data-id="{{$student['id']}}">
-                    <span class="fa fa-trash mr-3"></span>Delete
+                    <span class="fa fa-trash mr-3"></span>{{trans('admin.delete')}}
                 </a>
               </td>
               <?php $i++;?>
@@ -68,42 +68,42 @@
       @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Student</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.add.student')}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div>
-            <label>Name:</label>
+            <label>{{trans('admin.name')}}:</label>
             <input type="text" name="name" id="name" placeholder="Enter Title">
           </div>
           <div>
-            <label>Email</label>
+            <label>{{trans('admin.email')}}</label>
             <input type="email" name="email" id="email" placeholder="Enter time">
           </div>
           <div>
-            <label>Password</label>
+            <label>{{trans('admin.password')}}</label>
             <input type="password" name="password" id="password" placeholder="Enter Time Duration">
           </div>
           <div>
-            <label>Mobile Number</label>
+            <label>{{trans('admin.mobile.number')}}</label>
             <input type="text" name="mobile_number" id="mobile-number" placeholder="Enter Mobile Number">
           </div>
           <div >
             <div >
-              <label for="inputGroupSelect01">Options</label>
+              <label for="inputGroupSelect01">{{trans('admin.options')}}</label>
                 </div>
                     <select class="custom-select" id="inputGroupSelect01">
                     <option selected>Choose...</option>
-                    <option value="S">S</option>
-                    <option value="A">A</option>
+                    <option value="S">{{trans('user.type.s')}}</option>
+                    <option value="A">{{trans('user.type.a')}}</option>
                     </select>
                 </div>
             </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="submitButton" type="submit" class="btn btn-primary">Add</button> <!-- Change the button label to "Add" -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}</button>
+          <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.add')}}</button> <!-- Change the button label to "Add" -->
         </div>
       </div>
     </form>
@@ -117,38 +117,38 @@
                 @csrf
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Student</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.update.student')}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="modal-body">
                     <div>
-                        <label>Name:</label>
+                        <label>{{trans('admin.name')}}:</label>
                         <input type="text" name="name" id="name" placeholder="Enter Title">
                       </div>
                       <div>
-                        <label>Email</label>
+                        <label>{{trans('admin.email')}}</label>
                         <input type="email" name="email" id="email" placeholder="Enter time">
                       </div>
                       <div>
-                        <label>Mobile Number</label>
+                        <label>{{trans('admin.mobile.number')}}</label>
                         <input type="text" name="mobile_number" id="mobile_number" placeholder="Enter Mobile Number">
                       </div>
                       <div >
                         <div >
-                          <label for="inputGroupSelect01">Options</label>
+                          <label for="inputGroupSelect01">{{trans('admin.options')}}</label>
                             </div>
                                 <select class="custom-select" id="inputGroupSelect01">
-                                <option selected id="user_type">Choose...</option>
-                                <option value="S" >S</option>
-                                <option value="A">A</option>
+                                <option selected id="user_type">{{trans('admin.choose')}}</option>
+                                <option value="S" >{{trans('admin.')}}S</option>
+                                <option value="A">{{trans('admin.')}}A</option>
                                 </select>
                             </div>
                         </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="submitButton" type="submit" class="btn btn-primary">Update</button> <!-- Change the button label to "Add" -->
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}</button>
+                    <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.update')}}</button> <!-- Change the button label to "Add" -->
                   </div>
                 </div>
               </form>

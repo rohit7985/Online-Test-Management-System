@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Student;
 use App\Models\Test;
+use App\Models\Test_responses;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 
@@ -20,8 +21,19 @@ class adminController extends Controller
                 $students = Student::all()->count();
                 $tests = Test::all()->count();
                 $questions = Question::all()->count();
+
+                $testData = Test::all();
+                $data = [];
+                foreach($testData as $test){
+                    $numberOfUsers = Test_responses::getStudentCountByTestId($test->id);
+                    $data[$test->name] = $numberOfUsers;
+                }
+                // dd($data);
+                return view('admin.dashboard',compact('user','students','tests','questions','data'));
+            }else{
+                $tests = Test::orderBy('created_at', 'desc')->take(6)->get();
+                return view('index', compact('tests'));
             }
-            return view('admin.dashboard',compact('user','students','tests','questions'));
         }catch(Exception $e){
             dd($e);
         }

@@ -4,10 +4,10 @@
  <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4 text-center">Add Test</h2>
+        <h2 class="mb-4 text-center">{{trans('admin.add.test')}}</h2>
              <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTestModel">
-          Add Test
+          {{trans('admin.add.test')}}
         </button>
         @if(session('success'))
     <div class="alert alert-success">
@@ -28,22 +28,21 @@
             
             <tr>
               
-              <th scope="col">S.No.</th>
-              <th scope="col">Name</th>
-              <th scope="col">Image</th>
-              <th scope="col">Start at</th>
-              <th scope="col">Time Duration</th>
+              <th scope="col">{{trans('admin.s.n')}}</th>
+              <th scope="col">{{trans('admin.name')}}</th>
+              <th scope="col">{{trans('admin.image')}}</th>
+              <th scope="col">{{trans('admin.start.at')}}</th>
+              <th scope="col">{{trans('admin.time.duration')}}</th>
               <th></th>
               <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <?php $i=1;?>
-            @foreach ($tests as $test)
-            <tr>
-                
-                <th scope="row">{{$i}}</th>
+            @php $serialNumber = ($tests->currentPage() - 1) * $tests->perPage() + 1; @endphp
+              @foreach ($tests as $test)
+              <tr>
+                <th scope="row">{{$serialNumber}}</th>
                 <td>{{$test['name']}}</td>
                 <td>
                     <div class="card" style="width: 150px; height:100px">      
@@ -54,60 +53,63 @@
                 <td>{{$test['test_duration']}}</td>
                 <td>
                   <a href="{{ route('addQna', ['id' => $test['id']]) }}">
-                      <span class="fa fa-edit mr-3"></span>Add Question
+                      <span class="fa fa-edit mr-3"></span>{{trans('admin.add.question')}}
                   </a>
               </td>
               
                 <td>
                     <a href="#" class="edit-test" data-id="{{$test['id']}}">
-                        <span class="fa fa-edit mr-3"></span>Edit
+                        <span class="fa fa-edit mr-3"></span>{{trans('admin.edit')}}
                     </a>
                 </td>
                 <td>
                     <a href="#" class="delete-test" data-id="{{$test['id']}}">
-                        <span class="fa fa-trash mr-3"></span>Delete
+                        <span class="fa fa-trash mr-3"></span>{{trans('admin.delete')}}
                     </a>
                 </td>
-                <?php $i++;?>
+                @php $serialNumber++; @endphp
             </tr>
             @endforeach
         </tbody>
-        
         </table>
+        <h4 style="padding-left: 7in"> {{ $tests->links() }}</h4>
         
         <!--Add Test Modal -->
 <div class="modal fade" id="addTestModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
+    <div id="successMessage" style="display:none;">
+      {{trans('admin.success.note')}}
+  </div>
     <form id="testForm" action="{{ route('tests.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Test</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.add.test')}}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div>
-            <label>Name:</label>
-            <input type="text" name="name" id="name" placeholder="Enter Title">
+            <label>{{trans('admin.name')}}:</label>
+            <input type="text" name="name" id="name" placeholder="Enter Title" autocomplete="off">
           </div>
           <div>
-            <label>Start At:</label>
-            <input type="datetime-local" name="start_at" id="start_at" placeholder="Enter time">
+            <label>{{trans('admin.start.at')}}:</label>
+            <input type="datetime-local" name="start_at" id="date" placeholder="Enter time">
           </div>
           <div>
-            <label>Time Duration:</label>
+            <label>{{trans('admin.time.duration')}}:</label>
             <input type="time" name="test_duration" id="test_duration" placeholder="Enter Time Duration">
           </div>
           <div>
-            <label>Image:</label>
+            <label>{{trans('admin.image')}}:</label>
             <input type="file" name="images" id="images" placeholder="Upload Image please:">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="submitButton" type="submit" class="btn btn-primary">Add</button> <!-- Change the button label to "Add" -->
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}</button>
+          <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.add')}}</button> <!-- Change the button label to "Add" -->
         </div>
       </div>
     </form>
@@ -121,63 +123,51 @@
               @csrf
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add Test</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">{{trans('admin.add.test')}}</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
                 <div class="modal-body">
                   <div>
-                    <label>Name:</label>
-                    <input type="text" name="name" id="name" placeholder="Enter Title">
+                    <label>{{trans('admin.name')}}:</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Title" autocomplete="off">
                   </div>
                   <div>
-                    <label>Start At:</label>
+                    <label>{{trans('admin.start.at')}}:</label>
                     <input type="datetime-local" name="start_at" id="start_at" placeholder="Enter time">
                   </div>
                   <div>
-                    <label>Time Duration:</label>
+                    <label>{{trans('admin.time.duration')}}:</label>
                     <input type="time" name="test_duration" id="test_duration" placeholder="Enter Time Duration">
                   </div>
                  
                   <div>
-                    <label>Image:</label>
+                    <label>{{trans('admin.image')}}:</label>
                     <input type="file" name="images" id="images" placeholder="Upload Image please:">
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button id="submitButton" type="submit" class="btn btn-primary">Update</button> <!-- Change the button label to "Add" -->
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">{{trans('admin.close')}}Close</button>
+                  <button id="submitButton" type="submit" class="btn btn-primary">{{trans('admin.update')}}Update</button> <!-- Change the button label to "Add" -->
                 </div>
               </div>
             </form>
           </div>
         </div>
-
-
     <script>
-    $(document).ready(function() {
-
-      $("#testForm").on('submit',function(e) {
-          e.preventDefault();
-          var form = this;
-          $.ajax({
-              url: $(form).attr('action'),
-              method: $(form).attr('method'),
-              data: new FormData(form),
-              processData:false,
-              dataType:'json',
-              contentType:false,
-              success: function(data) {
-                window.location.href = "{{ route('test') }}";
-              },
-              error: function(xhr, status, error) {
-                  // Handle the error
-                  console.error('Error:', error);
-              }
-          });
+      document.addEventListener('DOMContentLoaded', function() {
+        var now = new Date();
+        var oneYearLater = new Date(now);
+        oneYearLater.setFullYear(oneYearLater.getFullYear() + 1);
+        var formattedNow = now.toISOString().slice(0, 16);
+        var formattedOneYearLater = oneYearLater.toISOString().slice(0, 16);
+        document.getElementById('date').setAttribute('min', formattedNow);
+        document.getElementById('date').setAttribute('max', formattedOneYearLater);
       });
-      
+    </script>
+    <script>
+    $(document).ready(function() {   
       $('.delete-test').click(function(e) {
           e.preventDefault();
           var testId = $(this).data('id');
@@ -257,7 +247,5 @@
         });
       });
   });
-
- </script>
-    
+ </script>  
 @endsection

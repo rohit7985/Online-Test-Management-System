@@ -21,13 +21,19 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="filters">
-                <ul>
+                {{-- <ul>
                   <li data-filter="*"  class="active">All Tests</li>
                   <li data-filter=".soon">Soon</li>
                   <li data-filter=".imp">Important</li>
                   <li data-filter=".att">Attractive</li>
-                </ul>
+                </ul> --}}
               </div>
+                  @if(session('success'))
+                      <div class="alert alert-success">{{ session('success') }}</div>
+                  @endif
+                  @if(session('error'))
+                      <div class="alert alert-danger">{{ session('error') }}</div>
+                  @endif
             </div>
             <div class="col-lg-12">
               <div class="row grid">
@@ -39,7 +45,7 @@
                       <div class="price">
                         <span>Free</span>
                       </div>
-                      <a href="{{route('test.instruction')}}"><img src="{{ url('images/'.$test['images']) }}" alt="" id="showImg"></a>
+                      <a href="{{route('test.instruction',  ['testID' => $test['id']])}}"><img src="{{ url('images/'.$test['images']) }}" alt="" id="showImg"></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -55,14 +61,14 @@
               </div>
             </div>
             <div class="col-lg-12">
-              <div class="pagination">
+              {{-- <div class="pagination">
                 <ul>
                   <li><a href="#">1</a></li>
                   <li class="active"><a href="#">2</a></li>
                   <li><a href="#">3</a></li>
                   <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
                 </ul>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

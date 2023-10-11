@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ url('assets1/css/templatemo-edu-meeting.css') }}">
     <link rel="stylesheet" href="{{ url('assets1/css/owl.css') }}">
     <link rel="stylesheet" href="{{ url('assets1/css/lightbox.css') }}">
+    <link rel="stylesheet" href="{{ url('assets1/css/main.css') }}">
 
 </head>
 
@@ -33,38 +34,37 @@
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="{{ route('home') }}" class="logo">
-                            Real Vision
+                            {{trans('home.real.vision')}}
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li><a href="{{ route('home') }}">Home</a></li>
-                            <li><a href="{{ route('aboutUs') }}">About Us</a></li>
+                            <li><a href="{{ route('home') }}">{{trans('home.home')}}</a></li>
+                            <li><a href="{{ route('aboutUs') }}">{{trans('home.aboutUs')}}</a></li>
                             <li></li>
-                            <li></li>
-                            @auth
-                                <div class="main-button-red">
-                                    <a href="{{ route('logout') }}">Logout</a>
-                                </div>
-                            @endauth
-
-                            @if(request()->is('user/access*') ||(request()->is('student-dashboard*') ))
-                            
+                            @if(Session::has('currentUserData'))
+                            <li><a href="{{ route('student.dashboard') }}">{{trans('home.dashboard')}}</a></li>
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="small-button">{{Session::get('currentUserData')['name']}}</button>
+                                        <div class="dropdown-content">
+                                            <a href="{{ route('student.profile') }}">{{trans('home.profile')}}</a>
+                                            <a href="{{ route('logout') }}">{{trans('home.logout')}}</a>
+                                        </div>
+                                    </div>
+                                </li>
                             @else
-                            <div class="main-button-red">
-                                <a href="{{ route('login') }}">Login</a>
-                            </div>   
+                                <div class="main-button-red">
+                                    <a href="{{ route('login') }}">{{trans('home.login')}}</a>
+                                </div> 
+                                <li class="or">{{trans('home.or')}}</li>
+                                <div class="main-button-red">
+                                    <a href="{{ route('google.login') }}"><i class="fa fa-google google" aria-hidden="true"></i>{{trans('home.login')}}</a>
+                                </div> 
                             @endif
-                        
-                        
-                            
-
-
-
-
                         </ul>
                         <a class='menu-trigger'>
-                            <span>Menu</span>
+                            <span>{{trans('home.menu')}}</span>
                         </a>
                         <!-- ***** Menu End ***** -->
                     </nav>

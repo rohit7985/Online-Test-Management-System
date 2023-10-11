@@ -17,12 +17,12 @@ class customAuth
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check()){
-            return $next($request); 
-        }
-        else{
-            return redirect()->route('login')->with('error' , 'Invalid User');
-        }
-        // return $next($request);
+        // if(Auth::check()){
+        //     return $next($request); 
+        // }
+        // else{
+        //     return redirect()->route('login')->with('error' , 'Invalid request');
+        // }
+        return $next($request);
      }
 }

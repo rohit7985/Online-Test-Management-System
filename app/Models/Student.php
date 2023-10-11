@@ -8,6 +8,7 @@ class Student extends Authenticatable
 {
     protected $fillable = [
         'name',
+        'googleId',
         'email',
         'mobile_number',
         'password',

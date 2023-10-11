@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Crypt;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// })->name('home');
-
 Route::get('/registration', function () {
     return view('registration');
 })->name('registration');
@@ -36,7 +32,11 @@ Route::get('/orignal', function () {
 
 // Home 
 Route::get('/',['as' => 'home', 'uses' => 'homeController@index']);
+Route::post('/contact', ['as' => 'contact.store', 'uses' => 'ContactUsController@store']);
 
+
+Route::get('/auth/google', ['as' => 'google.login','uses' => 'GoogleLoginController@redirectToGoogle']);
+Route::get('/auth/google/callback', ['as' => 'google.handleCallback','uses' => 'GoogleLoginController@handleGoogleCallback']);
 
 
 Route::post('/registration', ['as' => 'registration.store','uses' => 'studentController@store']);
@@ -49,17 +49,23 @@ Route::middleware('loginAuth')->group(function () {
     Route::get('admin-dashboard',['as' => 'admin.dashboard', 'uses' => 'adminController@dashboard']); 
     Route::get('admin-logout',['as' => 'admin.logout', 'uses' => 'adminController@logout']); 
     // Student
+
+Route::middleware('auth')->group(function () {  
     Route::get('student-dashboard',['as' => 'student.dashboard', 'uses' => 'studentController@index']); 
+});
     Route::get('logout',['as' => 'logout', 'uses' => 'studentController@logout']); 
     Route::get('images/{filename}', ['as' => 'image.show', 'uses' => 'Admin\TestController@showImg']);
 
 
     Route::prefix('student/')->group(function () {
-        Route::get('test-instructions', ['as' => 'test.instruction', 'uses' => 'Admin\TestController@testInstruction']);
+        Route::get('test-instructions/{testID}', ['as' => 'test.instruction', 'uses' => 'Admin\TestController@testInstruction']);
+        Route::get('profile', ['as' => 'student.profile', 'uses' => 'studentController@profile']);
+        Route::post('change-password', ['as' => 'change.password', 'uses' => 'studentController@changePassword']);
     });
     // Test
     Route::prefix('admin/')->group(function () {
         Route::get('test', ['as' => 'test', 'uses' => 'Admin\TestController@index']);
+        Route::get('test-result', ['as' => 'test-result', 'uses' => 'Admin\TestController@testResult']);
         Route::get('/addQna/{id}', ['as' => 'addQna', 'uses' => 'Admin\TestController@addQna']);
         Route::post('tests', ['as' => 'tests.store', 'uses' => 'Admin\TestController@store']);
         Route::get('/test/{test}/edit', ['as' => 'tests.edit', 'uses' => 'Admin\TestController@editTest']);
@@ -67,6 +73,12 @@ Route::middleware('loginAuth')->group(function () {
         Route::delete('/delete-test/{id}', ['as' => 'tests.delete', 'uses' => 'Admin\TestController@deleteTest']);
         Route::post('/update-test/{test}', ['as' => 'tests.update', 'uses' => 'Admin\TestController@update']);
         Route::post('/add-questions-to-test', ['as' => 'add.QnaToTest', 'uses' => 'Admin\TestController@addQnaToTest']);
+        Route::post('/attempt-test', ['as' => 'attempt.test', 'uses' => 'Admin\TestController@attemptTest']);
+        Route::post('/submit-test', ['as' => 'submit.test', 'uses' => 'Admin\TestController@submitTest']);
+        Route::delete('/delete-test-response/{id}', ['as' => 'question.delete', 'uses' => 'Admin\TestController@deleteTestResponse']);
+        Route::get('/testResponse/{id}/edit', ['as' => 'testResponse.edit', 'uses' => 'Admin\TestController@editTestResponse']);
+
+
 
         // Question
         Route::get('question', ['as' => 'admin.question', 'uses' => 'QuestionController@index']);
@@ -74,6 +86,8 @@ Route::middleware('loginAuth')->group(function () {
         Route::delete('/delete-question/{id}', ['as' => 'question.delete', 'uses' => 'QuestionController@deleteQuestion']);
         Route::get('/question/{id}/edit', ['as' => 'question.edit', 'uses' => 'QuestionController@editQuestion']);
         Route::post('/update-question/{id}', ['as' => 'question.update', 'uses' => 'QuestionController@updateQuestion']);
+        Route::post('/add-question/{id}', ['as' => 'add.questions', 'uses' => 'QuestionController@addQuestion']);
+
 
         // Question Excel
         Route::post('/upload-exel', ['as' => 'import.excel', 'uses' => 'ExcelController@import']);
@@ -87,6 +101,12 @@ Route::middleware('loginAuth')->group(function () {
         //Route::post('students/store', ['as' => 'students.store', 'uses' => 'adminController@storestudent']);
 
         //
+
+
+        Route::get('/contact',['as' => 'admin.contact', 'uses' => 'ContactUsController@index']);
+        Route::delete('/delete-contact/{id}', ['as' => 'contact.delete', 'uses' => 'ContactUsController@deleteContact']);
+
+
 
 
     });

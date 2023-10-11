@@ -37,7 +37,7 @@
                       <div class="price">
                         <span>$14.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-01.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-01.jpg')}} alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -54,7 +54,7 @@
                       <div class="price">
                         <span>$22.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-02.jpg')}} alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -71,7 +71,7 @@
                       <div class="price">
                         <span>$24.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-03.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -88,7 +88,7 @@
                       <div class="price">
                         <span>$32.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-04.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-04.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -105,7 +105,7 @@
                       <div class="price">
                         <span>$34.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-02.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -122,7 +122,7 @@
                       <div class="price">
                         <span>$45.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-03.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -139,7 +139,7 @@
                       <div class="price">
                         <span>$52.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-01.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-01.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -156,7 +156,7 @@
                       <div class="price">
                         <span>$64.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-02.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-02.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">
@@ -173,7 +173,7 @@
                       <div class="price">
                         <span>$74.00</span>
                       </div>
-                      <a href="meeting-details.html"><img src="assets/images/meeting-03.jpg" alt=""></a>
+                      <a href="meeting-details.html"><img src={{url('assets1/images/meeting-03.jpg')}}  alt=""></a>
                     </div>
                     <div class="down-content">
                       <div class="date">

@@ -15,7 +15,8 @@ class ExcelController extends Controller
             $request->validate([
                 'excel_file' => 'required|mimes:xlsx,xls'
             ]);
-            Excel::import(new QuestionsImport, $request->file('excel_file'));
+            $test_id = $request->input('test_id');
+            Excel::import(new QuestionsImport($test_id), $request->file('excel_file'));
             return redirect()->back()->with('success', 'Excel file imported successfully');
         }catch(\Exception $e){
             dd($e);

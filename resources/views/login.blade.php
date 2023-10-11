@@ -1,12 +1,12 @@
 @extends('layouts.main')
-@section('title', 'Login')
+@section('title', 'Login Pannel')
 @section('main-content')
   <section class="heading-page header-text" id="top">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <h6>Get all details</h6>
-          <h2>Online Teaching and Learning Tools</h2>
+          <h6>{{trans('home.welcome')}}</h6>
+          <h2>{{trans('home.login.pannel')}}</h2>
         </div>
       </div>
     </div>
@@ -20,7 +20,7 @@
                 <form id="contact" action="{{ route('form.login') }}" method="POST">
                   @csrf
                     <div class="row">
-                        <h2>Login</h2>
+                        <h2>{{trans('home.login')}}</h2>
                         @if(session('error'))
                             <div class="alert alert-danger">
                                 {{ session('error') }}
@@ -43,14 +43,17 @@
                      
                       <div class="col-lg-12">
                         <fieldset>
-                          <button type="submit" id="form-submit" class="button">Submit</button>
+                          <button type="submit" id="form-submit" class="button">{{trans('home.submit')}}</button>
                         </fieldset>
                       </div>
-                      <i class="fa fa-lock">Forgot password </i>
+                      <i class="fa fa-lock">{{trans('home.forgot.password')}}</i>
                     </div>
                   </form>
               </div>
-              <p style="color: aliceblue">Don't have an account?<a href="{{route('registration')}}">  Register</a></p>
+              <div class="col-lg-8">
+                
+              </div>
+              <p style="color: aliceblue">{{trans('home.dont.have.an.account')}}<a href="{{route('registration')}}">  {{trans('home.register')}}</a></p>
             </div>
           </div>
         </div>

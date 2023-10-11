@@ -4,7 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Page Content  -->
     <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4 text-center" name="testId" value="{{ $test['id'] }}">Test Name: {{ $test['name'] }}</h2>
+        <h2 class="mb-4 text-center" name="testId" value="{{ $test['id'] }}">{{trans('admin.test.name:')}} {{ $test['name'] }}</h2>
 
 
         @if (session('success'))
@@ -20,13 +20,13 @@
         @endif
 
         <!-- Rest of your view file content -->
-        <a href="" class="btn btn-success" id="addQna">Add Selected</a>
-        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">Upload Excel File</a>
+        <a href="" class="btn btn-success" id="addQna">{{trans('admin.add.questions')}}</a>
+        <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">{{trans('admin.upload.excel.file')}}</a>
         <div class="modal fade" id="uploadPdfModal" tabindex="-1" aria-labelledby="uploadPdfModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="uploadPdfModalLabel">Upload MCQ Excel</h5>
+                        <h5 class="modal-title" id="uploadPdfModalLabel">{{trans('admin.upload.mcq.excel')}}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -40,11 +40,12 @@
                         @endif
                         <form action="{{ route('import.excel') }}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            <input type="hidden" id="test_id" name="test_id" value={{ $test['id'] }}>
                             <div class="form-group">
-                                <label for="pdf">Choose Excel File</label>
+                                <label for="pdf">{{trans('admin.choose.excel.file')}}</label>
                                 <input type="file" name="excel_file" accept=".xlsx, .xls">
                             </div>
-                            <button type="submit" class="btn btn-primary">Upload</button>
+                            <button type="submit" class="btn btn-primary">{{trans('admin.upload')}}</button>
                         </form>
                     </div>
                 </div>
@@ -56,18 +57,17 @@
 
                 <tr>
                     <th scope="col">
-                        Select All
+                        {{trans('admin.select.all')}}
                         <input type="checkbox" name="" id="selectAllId"
                             aria-label="Checkbox for following text input">
                     </th>
-                    <th scope="col">S.No.</th>
-                    <th scope="col">Question</th>
-                    <th scope="col">Option-A</th>
-                    <th scope="col">Option-B</th>
-                    <th scope="col">Option-C</th>
-                    <th scope="col">Option-D</th>
-                    <th scope="col">Correct Answer</th>
-                    <th scope="col">Time</th>
+                    <th scope="col">{{trans('admin.s.n')}}</th>
+                    <th scope="col">{{trans('admin.question')}}</th>
+                    <th scope="col">{{trans('admin.option.a')}}</th>
+                    <th scope="col">{{trans('admin.option.b')}}</th>
+                    <th scope="col">{{trans('admin.option.c')}}</th>
+                    <th scope="col">{{trans('admin.option.d')}}</th>
+                    <th scope="col">{{trans('admin.correct.answer')}}</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -88,7 +88,6 @@
                             <td>{{ $question['option3'] }}</td>
                             <td>{{ $question['option4'] }}</td>
                             <td>{{ $question['correct_option'] }}</td>
-                            <td>{{ $question['time'] }}</td>
 
                             <?php $i++; ?>
                         </tr>
@@ -120,11 +119,10 @@
                         },
                         type: 'POST',
                         data: {
-                            ids: all_ids,
                             testId: testId
                         },
                         success: function(data) {
-                            window.location.href = "{{ route('test') }}";
+                            window.location.href = "{{ route('admin.question') }}";
                         },
                         error: function(xhr, status, error) {
                             console.error('Error:', error);

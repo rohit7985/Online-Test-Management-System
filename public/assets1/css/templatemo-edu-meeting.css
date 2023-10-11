@@ -1460,7 +1460,7 @@ heading page
 */
 
 section.heading-page {
-  background-image: url(../images/heading-bg.jpg);
+  background-image: url(../images/cover.jpeg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1573,11 +1573,17 @@ section.meetings-page .pagination ul li a:hover {
 
 .meeting-single-item .thumb {
   position: relative;
+  background-image: url(../images/meetings-page-bg.jpg);
+  background-color: #3CF;
+
 }
 
 .meeting-single-item .thumb img {
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+  align-items: center ;
+  width: 200px;
+  height: 200px;
 }
 
 .meeting-single-item .thumb .price {

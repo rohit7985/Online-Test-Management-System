@@ -1,6 +1,6 @@
 <div class="footer">
-    <p>Copyright © 2023 Online-TestMS All Rights Reserved.
-      <b>Online Test Management System</b>
+    <p>{{trans('home.copyright')}}
+      <b>{{trans('home.real.vision')}}</b>
   </div>
 </section>
 
@@ -16,6 +16,9 @@
   <script src="{{url('assets1/js/video.js')}}"></script>
   <script src="{{url('assets1/js/slick-slider.js')}}"></script>
   <script src="{{url('assets1/js/custom.js')}}"></script>
+  <script src="{{url('admin/js/popper.js')}}"></script>
+<script src="{{url('admin/js/bootstrap.min.js')}}"></script>
+<script src="{{url('admin/js/main.js')}}"></script>
   <script>
       //according to loftblog tut
       $('.nav li:first').addClass('active');
