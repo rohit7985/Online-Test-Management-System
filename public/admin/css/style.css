@@ -3428,6 +3428,9 @@ input[type="button"].btn-block {
   display: block; }
 
 .navbar {
+  background-color: rgb(10 60 30 / 50%);
+  box-shadow: 0px 0px 25px black;
+  height: 100px;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8213,6 +8216,7 @@ h1, h2, h3, h4, h5,
   min-width: 250px;
   max-width: 250px;
   background-color: rgb(10 60 30 / 50%);
+  box-shadow: 0px 0px 30px black;
   color: #fff;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -8252,10 +8256,10 @@ h1, h2, h3, h4, h5,
         background: white;
         border-bottom: 1px solid #2f89fc; }
     #sidebar ul li.active > a {
-      background: transparent;
-      color: #fff; }
+      background: #dc3545;
+      color: black; }
       #sidebar ul li.active > a:hover {
-        background: #2f89fc;
+        background: #dc3545;
         border-bottom: 1px solid #2f89fc; }
   @media (max-width: 991.98px) {
     #sidebar {

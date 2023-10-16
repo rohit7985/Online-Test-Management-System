@@ -19,7 +19,7 @@
     @endif
         <!-- Rest of your view file content -->
 
-        <table class="table">
+        <table class="table table-data">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">
@@ -45,7 +45,7 @@
             <tbody>
                 @if (!empty($tests))  
                     @foreach ($tests as $test)
-                        <tr>
+                        <tr class="table-row">
                             <td>
                                 <input type="checkbox" class="checkboxId" name="qid" value="{{ $test['id'] }}"
                                     aria-label="Checkbox for following text input">

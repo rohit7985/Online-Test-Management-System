@@ -28,7 +28,7 @@
         
         <div class="row">
             <div class="col-md-8">
-                <div class="map_canvas">
+                <div class="dashboard-data map_canvas">
                     <canvas id="myChart" width="auto" height="100"></canvas>
                     <h6 class="text-center">{{trans('admin.dashboard.data')}}</h6>
                 </div>
@@ -38,7 +38,7 @@
         <div class="gap"></div>
        <div class="row">
                 <div class="col-md-8"></div>
-                <div class="col-md-4 ">
+                <div class="col-md-4 test-data">
                     <h6 class="text-center">{{trans('admin.test.data')}}</h6>
                     <canvas id="pieChart" width="40" height="10"></canvas>
                 </div>

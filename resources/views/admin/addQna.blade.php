@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table table-data">
             <thead class="thead-dark">
 
                 <tr>
@@ -76,7 +76,7 @@
                 @if (!empty($questions))
                     <?php $i = 1; ?>
                     @foreach ($questions as $question)
-                        <tr>
+                        <tr class="table-row">
                             <th>
                                 <input type="checkbox" class="checkboxId" name="qid" value="{{ $question['id'] }}"
                                     aria-label="Checkbox for following text input">

@@ -23,9 +23,9 @@
 
 <body>
 
-  <nav class="navbar navbar-light" style="background-color: black;">
-    <a class="navbar-brand">{{trans('home.real.vision')}}</a>
-        <div class="btn-group">
+  <nav class="navbar navbar-light">   
+            <a href="#" class="navbar-brand"><h2 class="tittle">{{trans('home.real.vision')}}</h2></a>
+        {{-- <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false">
                 {{ session('username') }}
@@ -33,6 +33,18 @@
             <div class="dropdown-menu dropdown-menu-right">
                 <a href="{{ route('admin.logout') }}"><span class="fa fa-sign-out mr-3"></span>{{trans('home.logout')}}</a>
 
+            </div>
+        </div> --}}
+        <button class="popover-btn" onclick="togglePopover()">Click Me</button>
+            <div class="popover" id="myPopover">
+            <span class="popover-content">Popover Content</span>
+            </div>
+
+
+        <div class="dropdown">
+            <button class="small-button">{{ session('username') }}</button>
+            <div class="dropdown-content">
+                <a href="{{ route('admin.logout') }}"><span class="fa fa-sign-out mr-3"></span>{{trans('home.logout')}}</a>
             </div>
         </div>
     </nav>
@@ -45,15 +57,20 @@
                     <span class="sr-only">{{trans('admin.toggle.menu')}}</span>
                 </button>
             </div>
-            <h1><a href="{{ route('admin.dashboard') }}" class="logo">{{trans('admin.admin.dashboard')}}</a></h1>
+            <div class="thumb">
+                <a href="{{ route('admin.dashboard') }}" class="logo">
+                    <img class="profile_img" src={{url('student/user.png')}} alt="check">
+                </a>
+                <h5> {{ session('username') }}</h5>
+            </div>
             <ul class="list-unstyled components mb-5">
-                <li class="active">
+                <li class="{{ request()->is('admin-dashboard') ? 'active' : '' }}">
                     <a href="{{ route('admin.dashboard') }}"><span class="fa fa-home mr-3"></span> {{trans('home.dashboard')}}</a>
                 </li>
-                <li>
+                <li class="{{ request()->is('admin/students') ? 'active' : '' }}">
                     <a href="{{ route('admin.students') }}"><span class="fa fa-user mr-3"></span>{{trans('admin.students')}}</a>
                 </li>
-                <li>
+                <li class="{{ request()->is(['admin/test', 'admin/test-result']) ? 'active' : '' }}">
                     <a type="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         <span class="fa fa-user mr-3"></span> {{trans('admin.tests')}} <span class="fa fa-chevron-down" style="padding-left: 94px"></span>
                     </a>
@@ -62,11 +79,21 @@
                         <a href="{{ route('test-result') }}"><span class="fa fa-clipboard mr-3"></span>{{trans('home.test.result')}}</a>
                     </div>
                 </li>
-                <li>
+                <li class="{{ request()->is('admin/question') ? 'active' : '' }}">
                     <a href="{{ route('admin.question') }}"><span class="fa fa-clipboard mr-3"></span>{{trans('home.questions')}}</a>
                 </li>                
-                <li>
+                <li class="{{ request()->is('admin/contact') ? 'active' : '' }}">
                     <a href="{{ route('admin.contact') }}"><span class="fa fa-clipboard mr-3"></span>{{trans('home.contact')}}</a>
                 </li>                
             </ul>
         </nav>
+
+
+<script>
+    function togglePopover() {
+      var popover = document.getElementById("myPopover");
+      popover.classList.toggle("show");
+    }
+  </script>
+  
+

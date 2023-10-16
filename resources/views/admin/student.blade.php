@@ -23,7 +23,7 @@
 
 <!-- Rest of your view file content -->
 
-        <table class="table">
+        <table class="table table-data">
           <thead class="thead-dark">
             
             <tr>
@@ -39,7 +39,7 @@
           <tbody>
             <?php $i=1;?>
             @foreach ($students as $student)
-            <tr>
+            <tr class="table-row">
               <th scope="row">{{$i}}</th>
               <td>{{$student['name']}}</td>
               <td>{{$student['email']}}</td>

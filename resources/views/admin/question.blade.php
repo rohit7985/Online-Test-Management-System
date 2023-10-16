@@ -52,7 +52,7 @@
         </div>
         <!-- Rest of your view file content -->
 
-        <table class="table">
+        <table class="table table-data">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">
@@ -82,7 +82,7 @@
                 @php $serialNumber = ($questions->currentPage() - 1) * $questions->perPage() + 1; @endphp
                 
                     @foreach ($questions as $question)
-                        <tr>
+                        <tr class="table-row">
                             <td>
                                 <input type="checkbox" class="checkboxId" name="qid" value="{{ $question['id'] }}"
                                     aria-label="Checkbox for following text input">

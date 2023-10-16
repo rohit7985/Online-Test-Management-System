@@ -20,7 +20,7 @@
 
 <!-- Rest of your view file content -->
 
-        <table class="table">
+        <table class="table table-data">
           <thead class="thead-dark">
             
             <tr>
@@ -36,7 +36,7 @@
           <tbody>
             <?php $i=1;?>
             @foreach ($contacts as $contact)
-            <tr>
+            <tr class="table-row">
               <th scope="row">{{$i}}</th>
               <td>{{$contact['name']}}</td>
               <td>{{$contact['email']}}</td>

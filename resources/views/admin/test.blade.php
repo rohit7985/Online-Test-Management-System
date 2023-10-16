@@ -23,7 +23,7 @@
 
 <!-- Rest of your view file content -->
 
-        <table class="table">
+        <table class="table table-data">
           <thead class="thead-dark">
             
             <tr>
@@ -41,7 +41,7 @@
           <tbody>
             @php $serialNumber = ($tests->currentPage() - 1) * $tests->perPage() + 1; @endphp
               @foreach ($tests as $test)
-              <tr>
+              <tr class="table-row">
                 <th scope="row">{{$serialNumber}}</th>
                 <td>{{$test['name']}}</td>
                 <td>
