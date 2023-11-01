@@ -35,11 +35,6 @@
 
             </div>
         </div> --}}
-        <button class="popover-btn" onclick="togglePopover()">Click Me</button>
-            <div class="popover" id="myPopover">
-            <span class="popover-content">Popover Content</span>
-            </div>
-
 
         <div class="dropdown">
             <button class="small-button">{{ session('username') }}</button>
@@ -88,12 +83,5 @@
             </ul>
         </nav>
 
-
-<script>
-    function togglePopover() {
-      var popover = document.getElementById("myPopover");
-      popover.classList.toggle("show");
-    }
-  </script>
   
 

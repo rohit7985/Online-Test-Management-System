@@ -17,7 +17,7 @@ return [
     'copyright' => 'Copyright © 2023 All Rights Reserved.',
     'welcome' => 'Welcome to the',
     'dont.have.an.account' => "Don't have an account?",
-    'admin.login.pannel' => 'Admin Login Pannel',
+    'student.login.pannel' => 'Student Login Pannel',
     'login.pannel' => 'Admin Login Pannel',
     'current.test' => 'Here are our Current Test',
     'attempt.test' => 'Attempt Test',

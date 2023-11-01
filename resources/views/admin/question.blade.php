@@ -20,7 +20,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addQuestionModel">
             {{trans('admin.add.questions')}}
         </button>
-        <button type="button" class="btn btn-primary" id="addQnatoTest" data-toggle="modal" data-target="#addQuestionModel">{{trans('admin.add.in.test')}}</button>
+        @if(Session::has('testId'))
+            <button type="button" class="btn btn-primary" id="addQnatoTest" data-toggle="modal" data-target="#addQuestionModel">{{trans('admin.add.in.test')}}</button>
+        @endif
         <a href="" class="btn btn-dark" id="uploadPDF" data-toggle="modal" data-target="#uploadPdfModal">{{trans('admin.upload.excel.file')}}</a>
         <div class="modal fade" id="uploadPdfModal" tabindex="-1" aria-labelledby="uploadPdfModalLabel" aria-hidden="true">
             <div class="modal-dialog">

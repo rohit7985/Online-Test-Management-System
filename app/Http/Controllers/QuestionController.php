@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Question;
 use Exception;
 use Illuminate\Support\Facades\Session;
+use App\Models\Test;
+
 
 class QuestionController extends Controller
 {
@@ -29,6 +31,9 @@ class QuestionController extends Controller
     public function index()
     {
         try {
+            if(Session::get('testId') == null){
+                Session::forget('testId');
+            }
             $questions = Question::paginate(10);
             return view('admin.question', compact('questions'));
         } catch (Exception $e) {
@@ -55,19 +60,9 @@ class QuestionController extends Controller
         try {
             $idsArray = explode(',', $ids);
             $testId = Session::get('testId');
-            foreach ($idsArray as $id) {
-                $question = Question::findOrFail($id);
-                $data = [
-                    'test_id' => $testId,
-                    'question' => $question->question,
-                    'option1' => $question->option1,
-                    'option2' => $question->option2,
-                    'option3' => $question->option3,
-                    'option4' => $question->option4,
-                    'correct_option' => $question->correct_option,
-                ];
-                Question::create($data);
-            }
+            $test = Test::find($testId);
+            $questions = Question::whereIn('id', $idsArray)->get();
+            $test->questions()->sync($questions);
             Session::forget('testId');
             return response()->json(['success' => true]);
         } catch (Exception $e) {

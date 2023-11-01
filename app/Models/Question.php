@@ -13,6 +13,10 @@ class Question extends Model
         'option3',
         'option4',
         'correct_option',
-        'test_id',
     ];
+
+    public function tests()
+    {
+        return $this->belongsToMany('App\Models\Test', 'test_questions')->withPivot('id');
+    }
 }

@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-lg-12">
           <h6>{{trans('home.welcome')}}</h6>
-          <h2>{{trans('home.login.pannel')}}</h2>
+          <h2>{{trans('home.student.login.pannel')}}</h2>
         </div>
       </div>
     </div>

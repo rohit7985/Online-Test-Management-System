@@ -12,16 +12,9 @@ class Test extends Model
         'test_duration', 
         'images'
     ];
-
-
-    public static function getTestNameById(){
-        $testIds = Question::pluck('test_id')->unique();
-        $tests = Test::whereIn('id', $testIds)->get(['id', 'name', 'images']);
-        return $tests;
-    }
-
+    
     public function questions()
     {
-        return $this->hasMany(Question::class, 'test_id', 'id');
+        return $this->belongsToMany('App\Models\Question', 'test_questions')->withPivot('id');
     }
 }

@@ -159,10 +159,11 @@ class TestController extends Controller
     public function addQna($id)
     {
         try {
-            $questions = Question::where('test_id', $id)->get();
-            $test = Test::findOrFail($id);
+            $test = Test::find($id);
+            $questions = $test->questions;
             return view('admin.addQna', compact('questions', 'test'));
         } catch (Exception $e) {
+            dd($e);
         }
     }
 

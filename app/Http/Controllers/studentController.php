@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StudentStoreRequest;
 use App\Models\Test;
 use App\Models\Test_responses;
+use App\Models\Question;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,11 @@ class studentController extends Controller
         try{
             if(Session::has('email')){
                 $email = Session::get('email');
-                $user = Student::getUserDataByEmail($email);
+                $userData = Student::getUserDataByEmail($email);
             }
-            $tests = Test::getTestNameById();
+            // $tests = Test::all();
+            $tests = Test::whereHas('questions')->get();
+            $user = $userData ?? Session::get('currentUserData');
             return view('student.dashboard',compact('user','tests'));
         }catch(Exception $e){
             dd($e);

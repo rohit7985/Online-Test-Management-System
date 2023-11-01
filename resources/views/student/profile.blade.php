@@ -19,9 +19,6 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="meeting-single-item">
-                <div class="thumb">
-                  <img src={{url('student/user.png')}} alt="check">
-                </div>
                 <div class="down-content">
                   @if(session('success'))
                       <div class="alert alert-success">
@@ -32,11 +29,18 @@
                           {{ session('error') }}
                       </div>
                   @endif
-                  <div class="">
-                    <a href="#"><h4 class="text-success">{{$user->name}}</h4></a>
-                    <a href="#" class=" change-pass " data-toggle="modal" data-target="#changePasswordModal">Change Password</a>
-
-                    {{-- <a href="#" class="change-pass" data-toggle="modal" data-target="#changePassword">Change Password</a> --}}
+                  <div class="row user-data">
+                    <div class="col-md-4">
+                      <a href="#">
+                        <img class="profile_img" src={{url('student/user.png')}} alt="check">
+                      </a>
+                      <h6>Name:{{$user->name}}</h6>
+                      <h6>Email: {{$user->email}}</h6>
+                      <h6>Contact: +91 {{$user->mobile_number}}</h6>
+                    </div>
+                    <div class="col-md-8">
+                      <a href="#" class=" change-pass " data-toggle="modal" data-target="#changePasswordModal">Change Password</a>
+                    </div>
                   </div>
                   <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -71,15 +75,9 @@
                         </div>
                     </div>
                 </div>
-                
-                  <h6>Email: {{$user->email}}</h6>
-                  <h6>Contact: +91 {{$user->mobile_number}}</h6>
+                 
+
                   
-                  <p class="description">
-                    {{-- This is an edu meeting HTML CSS template provided by <a href="https://templatemo.com/" target="_blank" rel="nofollow">TemplateMo website</a>. This is a Bootstrap v5.1.3 layout. If you need more free website templates like this one, please visit our website TemplateMo. Please tell your friends about our website. Thank you. If you want to get the latest collection of HTML CSS templates for your websites, you may visit <a rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a working contact form script, please visit <a href="https://templatemo.com/contact" target="_parent">our contact page</a> for more info. --}}
-                    
-                    {{-- <br><br>You are allowed to use this edu meeting CSS template for your school or university or business. You can feel free to modify or edit this layout. You are not allowed to redistribute the template ZIP file on any other template website. Please contact us for more information. --}}
-                  </p>
                   <div class="row">
                     <h4>Test Details:</h4><br>
                     <div class="col-lg-4">
@@ -114,28 +112,10 @@
                         </div>
                       </div>
                     @endforeach
-                    {{-- <div class="col-lg-12">
-                      <div class="share">
-                        <h5>Share:</h5>
-                        <ul>
-                          <li><a href="#">Facebook</a>,</li>
-                          <li><a href="#">Twitter</a>,</li>
-                          <li><a href="#">Linkedin</a>,</li>
-                          <li><a href="#">Behance</a></li>
-                        </ul>
-                      </div>
-                    </div> --}}
-
-
                   </div>
                 </div>
               </div>
             </div>
-            {{-- <div class="col-lg-12">
-              <div class="main-button-red">
-                <a href="meetings.html">Back To Meetings List</a>
-              </div>
-            </div> --}}
           </div>
         </div>
       </div>

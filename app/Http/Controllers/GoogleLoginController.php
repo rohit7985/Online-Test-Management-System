@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Session;
 class GoogleLoginController extends Controller
 {
     public function redirectToGoogle()
-    {
+    {   
         return Socialite::driver('google')->redirect();
     }
 
@@ -39,8 +39,6 @@ class GoogleLoginController extends Controller
         }
 
         Session::put('currentUserData', $user ?? $existingUser);
-        // $tests = Test::all();
-        // return view('student.dashboard',compact('user','tests')); 
         return redirect()->route('student.dashboard');
         }catch(Exception $e){
             dd($e);

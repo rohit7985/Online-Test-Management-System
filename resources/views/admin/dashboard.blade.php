@@ -24,25 +24,30 @@
     }
 ?>
 
-
-        
-        <div class="row">
-            <div class="col-md-8">
-                <div class="dashboard-data map_canvas">
-                    <canvas id="myChart" width="auto" height="100"></canvas>
-                    <h6 class="text-center">{{trans('admin.dashboard.data')}}</h6>
-                </div>
+<div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <h6 class="text-center">{{trans('admin.test.data')}}</h6>
+            <div class="pieChartStyle">
+                <canvas class="pieChart" id="pieChart"></canvas>
             </div>
-            <div class="col-md-4 "></div>
         </div>
-        <div class="gap"></div>
-       <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4 test-data">
-                    <h6 class="text-center">{{trans('admin.test.data')}}</h6>
-                    <canvas id="pieChart" width="40" height="10"></canvas>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+            <h6 class="text-center">{{trans('admin.dashboard.data')}}</h6>
+                <div class="dashboard-data map_canvas">
+                    <canvas id="myChart"></canvas>
                 </div>
-       </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
        <script>
             var dynamicData = @json(['labels' => $labels, 'values' => $values, 'backgroundColors' => $backgroundColors]);
@@ -64,43 +69,54 @@
         });
     </script>
       
-        <script>
-            var students = {{ $students }};
-            var tests = {{ $tests }};
-            var questions = {{ $questions }};
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Students', 'Tests', 'Questions'],
-                    datasets: [{
-                        label: 'Total Numbers',
-                        data: [students, tests, questions],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            max: 50,
-                            min: 0,
-                            ticks: {
-                                stepSize: 10
-                            }
-                        }
-                    },
-                    plugins: {
-                        title: {
-                            display: false,
-                            text: 'Custom Chart Title'
-                        },
-                        legend: {
-                            display: false,
+      <script>
+        var students = {{ $students }};
+        var tests = {{ $tests }};
+        var questions = {{ $questions }};
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Students', 'Tests', 'Questions'],
+                datasets: [{
+                    label: 'Total Numbers',
+                    data: [students, tests, questions],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',  // Color for Students
+                        'rgba(54, 162, 235, 0.2)', // Color for Tests
+                        'rgba(13, 219, 120, 0.8)',  // Color for Questions
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(12, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        max: 50,
+                        min: 0,
+                        ticks: {
+                            stepSize: 10
                         }
                     }
+                },
+                plugins: {
+                    title: {
+                        display: false,
+                        text: 'Custom Chart Title'
+                    },
+                    legend: {
+                        display: false,
+                    }
                 }
-            });
-        </script>
+            }
+        });
+    </script>
+    
 
 
     @endsection
